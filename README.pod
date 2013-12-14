@@ -4,15 +4,21 @@ Mojolicious::Plugin::MostTagHelpers - Most tag helpers for your Mojolicious temp
 
 =head1 SYNOPSIS
 
- %= div '#mydiv.myclass' => begin
-   %= p '.myp.myq' => 'Text'
-   %= p 'Other Text'
- % end
+  # Mojolicious
+  $app->plugin('MostTagHelpers');
 
- <div id="mydiv" class="myclass">
-  <p class="myp myq">Text</p>
-  <p>Other Text</p>
- </div>
+  # Mojolicious::Lite
+  plugin 'MostTagHelpers';
+
+  %= div '#mydiv.myclass' => begin
+    %= p '.myp.myq' => 'Text'
+    %= p 'Other Text'
+  % end
+ 
+  <div id="mydiv" class="myclass">
+   <p class="myp myq">Text</p>
+   <p>Other Text</p>
+  </div>
 
 =head1 DESCRIPTION
 
@@ -235,7 +241,7 @@ L<http://github.com/hrupprecht/Mojolicious-Plugin-MostTagHelpers>
 
 Joel Berger - C<joel.a.berger@gmail.com>
 
-Holger Rupprecht - C<Holger.Rupprecht@Itelligence.de>
+Holger Rupprecht - C<Holger.Rupprecht@gmx.de>
 
 This project is an extracted part of L<App::MojoSlides|http://github.com/jberger/App-MojoSlides>,
 created by Joel Berger, C<joel.a.berger@gmail.com>.
