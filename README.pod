@@ -225,11 +225,11 @@ You can also look for information at:
 =head1 SEE ALSO
 
 L<Mojolicious::Plugin::TagHelpers>
-L<App::Mojoslides>
+L<App::MojosSlides>
 
 =head1 SOURCE REPOSITORY
 
-L<http://github.com/hrupprecht/Mojolicious-Plugin/MostTagHelpers>
+L<http://github.com/hrupprecht/Mojolicious-Plugin-MostTagHelpers>
 
 =head1 AUTHOR
 
@@ -237,7 +237,7 @@ Joel Berger - C<joel.a.berger@gmail.com>
 
 Holger Rupprecht - C<Holger.Rupprecht@Itelligence.de>
 
-This project is an extracted part of L<App::Mojoslides|http://github.com/jberger/MojoSlides>,
+This project is an extracted part of L<App::MojoSlides|http://github.com/jberger/App-MojoSlides>,
 created by Joel Berger, C<joel.a.berger@gmail.com>.
 
 =head1 COPYRIGHT AND LICENSE
