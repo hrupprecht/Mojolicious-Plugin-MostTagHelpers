@@ -225,7 +225,7 @@ You can also look for information at:
 =head1 SEE ALSO
 
 L<Mojolicious::Plugin::TagHelpers>
-L<App::MojosSlides>
+L<App::MojosSlides|http://github.com/jberger/App-MojoSlides>
 
 =head1 SOURCE REPOSITORY
 
