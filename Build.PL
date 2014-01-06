@@ -10,14 +10,13 @@ my $builder = Module::Build->new(
     dist_version_from   => 'lib/Mojolicious/Plugin/MostTagHelpers.pm',
     release_status      => 'stable',
     configure_requires => {
-        'Module::Build' => 0,
+      'Module::Build' => 0,
     },
     build_requires => {
-        'Test::More' => 0,
+      'Test::More' => 0,
     },
     requires => {
-        #'ABC'              => 1.6,
-        #'Foo::Bar::Module' => 5.0401,
+      'HTML::Tagset'   => 3.20,
     },
     add_to_cleanup     => [ 'Mojolicious-Plugin-MostTagHelpers-*' ],
     create_makefile_pl => 'traditional',

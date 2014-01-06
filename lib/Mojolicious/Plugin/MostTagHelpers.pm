@@ -1,81 +1,19 @@
 package Mojolicious::Plugin::MostTagHelpers;
 
 use Mojo::Base 'Mojolicious::Plugin';
+use HTML::Tagset;
 
-our $VERSION = eval 0.01;
+our $VERSION = eval 0.02;
 
-# list stolen from HTML::Tags (Web::Simple)
-my @HTML_TAGS = qw(
-a
-aside
-audio
-blockquote
-body
-br
-button
-canvas
-caption
-cite
-code
-col
-colgroup
-div
-dd
-del
-dl
-dt
-em
-embed
-fieldset
-figcaption
-figure
-footer
-h1
-h2
-h3
-h4
-h5
-h6
-head
-header
-hr
-html
-i
-iframe
-img
-label
-legend
-li
-noscript
-object
-ol
-optgroup
-option
-output
-p
-pre
-rp
-rt
-ruby
-script
-span
-strong
-style
-table
-tbody
-td
-textarea
-tfoot
-th
-thead
-tr
-ul
-video
+our %skip = (
+  b => 1, #Mojo::Bytestream
+  c => 1, #Controller
 );
 
 sub register {
   my ($plugin, $app) = @_;
-  foreach my $tag (@HTML_TAGS) {
+  foreach my $tag (keys %HTML::Tagset::isKnown) {
+    next if $skip{$tag};
     $app->helper( $tag => _tag($tag) );
   }
   $app->helper( incremental => \&_incremental );
@@ -92,17 +30,17 @@ sub _tag {
       ($id)  = $sel =~ /\#([^#. ]+)/;
       @class = $sel =~ /\.([^#. ]+)/g;
     }
-    return $self->tag( 
+    return $self->tag(
       $tag,
       $id ? ( id => $id ) : (),
       @class ? ( class => join(' ', @class) ) : (),
-      @_
+      !$HTML::Tagset::emptyElement{$tag} ? @_ : undef
     );
   };
 }
 
 sub _gen_pod_list {
-  my @list = map { "=item $_" } @HTML_TAGS;
+  my @list = map { "=item $_\n\n" } sort grep { !$skip{$_} } keys %HTML::Tagset::isKnown;
   return '=over', @list, '=back';
 }
 
@@ -126,14 +64,14 @@ sub _incremental {
   require Mojo::ByteStream;
   return Mojo::ByteStream->new($dom->to_xml);
 }
-  
+
 1;
 
 __END__
 
 =head1 NAME
 
-App::MojoSlides::MoreTagHelpers - More tag helpers for your slides
+App::MojoSlides::MoreTagHelpers - More tag helpers for your templated and slides
 
 =head1 SYNOPSIS
 
@@ -173,7 +111,7 @@ Extra tag helpers useful for templating and slide making
     <li ms_overlay="1-">Always shown</li>
     <li ms_overlay="2-">Shown after one click</li>
   </ul>
-  
+
 
 Adds ms_overlay attributes to a sequence of elements with increasing start number.
 Note that if passed an html element which has only one element, the attributes will be applied to the children of that attribute.
@@ -198,9 +136,27 @@ This list may change in the future, but common tags which meet the above critera
 
 =item a
 
-=item aside
+=item abbr
 
-=item audio
+=item acronym
+
+=item address
+
+=item applet
+
+=item area
+
+=item base
+
+=item basefont
+
+=item bdo
+
+=item bgsound
+
+=item big
+
+=item blink
 
 =item blockquote
 
@@ -210,9 +166,9 @@ This list may change in the future, but common tags which meet the above critera
 
 =item button
 
-=item canvas
-
 =item caption
+
+=item center
 
 =item cite
 
@@ -222,11 +178,15 @@ This list may change in the future, but common tags which meet the above critera
 
 =item colgroup
 
-=item div
-
 =item dd
 
 =item del
+
+=item dfn
+
+=item dir
+
+=item div
 
 =item dl
 
@@ -238,11 +198,13 @@ This list may change in the future, but common tags which meet the above critera
 
 =item fieldset
 
-=item figcaption
+=item font
 
-=item figure
+=item form
 
-=item footer
+=item frame
+
+=item frameset
 
 =item h1
 
@@ -258,8 +220,6 @@ This list may change in the future, but common tags which meet the above critera
 
 =item head
 
-=item header
-
 =item hr
 
 =item html
@@ -268,13 +228,43 @@ This list may change in the future, but common tags which meet the above critera
 
 =item iframe
 
+=item ilayer
+
 =item img
+
+=item input
+
+=item ins
+
+=item isindex
+
+=item kbd
 
 =item label
 
 =item legend
 
 =item li
+
+=item link
+
+=item listing
+
+=item map
+
+=item menu
+
+=item meta
+
+=item multicol
+
+=item nobr
+
+=item noembed
+
+=item noframes
+
+=item nolayer
 
 =item noscript
 
@@ -286,25 +276,39 @@ This list may change in the future, but common tags which meet the above critera
 
 =item option
 
-=item output
-
 =item p
+
+=item param
+
+=item plaintext
 
 =item pre
 
-=item rp
+=item q
 
-=item rt
+=item s
 
-=item ruby
+=item samp
 
 =item script
 
+=item select
+
+=item small
+
+=item spacer
+
 =item span
+
+=item strike
 
 =item strong
 
 =item style
+
+=item sub
+
+=item sup
 
 =item table
 
@@ -320,11 +324,29 @@ This list may change in the future, but common tags which meet the above critera
 
 =item thead
 
+=item title
+
 =item tr
+
+=item tt
+
+=item u
 
 =item ul
 
-=item video
+=item var
+
+=item wbr
+
+=item xmp
+
+=item ~comment
+
+=item ~directive
+
+=item ~literal
+
+=item ~pi
 
 =back
 

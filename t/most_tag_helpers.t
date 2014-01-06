@@ -2,10 +2,11 @@ use Mojolicious::Lite;
 
 plugin 'Mojolicious::Plugin::MostTagHelpers';
 
-any '/'  => 'index';
-any '/s' => 'selector';
-any '/i_parent' => 'incremental_parent';
-any '/i_items'  => 'incremental_items';
+any '/'              => 'index';
+any '/s'             => 'selector';
+any '/i_parent'      => 'incremental_parent';
+any '/i_items'       => 'incremental_items';
+any '/empty_element' => 'empty_element';
 
 use Test::More;
 use Test::Mojo;
@@ -35,6 +36,9 @@ $t->get_ok('/i_parent')
 $t->get_ok('/i_items')
   ->text_is('li[ms_overlay="1-"]' => 'First')->or($diag)
   ->text_is('li[ms_overlay="2-"]' => 'Second')->or($diag);
+
+$t->get_ok('/empty_element')
+  ->text_is('img src="/tst.img"' => '')->or($diag);
 
 done_testing;
 
@@ -67,3 +71,9 @@ __DATA__
     %= li 'Second'
   % end
 % end
+
+@@ empty_element.html.ep
+
+%= img src => '/tst.img' => begin
+  this shoud not be rendered
+%= end
