@@ -16,7 +16,7 @@ my $builder = Module::Build->new(
       'Test::More' => 0,
     },
     requires => {
-      'Mojolicious'    => 4.0,    
+      'Mojolicious'    => 4.67,    
       'HTML::Tagset'   => 3.20,
     },
     add_to_cleanup     => [ 'Mojolicious-Plugin-MostTagHelpers-*' ],
