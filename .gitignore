@@ -1,3 +1,4 @@
 log/*
 *.swp
 MANIFEST.SKIP.bak
+*.tar.gz
