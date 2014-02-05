@@ -7,7 +7,7 @@ build_requires:
 configure_requires:
   Module::Build: 0
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4004, CPAN::Meta::Converter version 2.130880'
+generated_by: 'Module::Build version 0.4204, CPAN::Meta::Converter version 2.130880'
 license: artistic_2
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -16,9 +16,10 @@ name: Mojolicious-Plugin-MostTagHelpers
 provides:
   Mojolicious::Plugin::MostTagHelpers:
     file: lib/Mojolicious/Plugin/MostTagHelpers.pm
-    version: 0.02
+    version: 0.03
 requires:
   HTML::Tagset: 3.2
+  Mojolicious: 4.66
 resources:
   license: http://www.perlfoundation.org/artistic_license_2_0
-version: 0.02
+version: 0.03

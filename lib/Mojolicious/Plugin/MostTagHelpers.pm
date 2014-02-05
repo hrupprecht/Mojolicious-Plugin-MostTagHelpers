@@ -3,11 +3,13 @@ package Mojolicious::Plugin::MostTagHelpers;
 use Mojo::Base 'Mojolicious::Plugin';
 use HTML::Tagset;
 
-our $VERSION = eval 0.02;
+our $VERSION = eval 0.03;
 
 our %skip = (
   b => 1, #Mojo::Bytestream
   c => 1, #Controller
+  title => 1,
+  param => 1,
 );
 
 sub register {
@@ -278,8 +280,6 @@ This list may change in the future, but common tags which meet the above critera
 
 =item p
 
-=item param
-
 =item plaintext
 
 =item pre
@@ -323,8 +323,6 @@ This list may change in the future, but common tags which meet the above critera
 =item th
 
 =item thead
-
-=item title
 
 =item tr
 

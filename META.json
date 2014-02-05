@@ -4,7 +4,7 @@
       "Holger Rupprecht <holger.rupprecht@gmx.de>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4004, CPAN::Meta::Converter version 2.130880",
+   "generated_by" : "Module::Build version 0.4204",
    "license" : [
       "artistic_2"
    ],
@@ -26,14 +26,15 @@
       },
       "runtime" : {
          "requires" : {
-            "HTML::Tagset" : "3.2"
+            "HTML::Tagset" : "3.2",
+            "Mojolicious" : "4.66"
          }
       }
    },
    "provides" : {
       "Mojolicious::Plugin::MostTagHelpers" : {
          "file" : "lib/Mojolicious/Plugin/MostTagHelpers.pm",
-         "version" : "0.02"
+         "version" : "0.03"
       }
    },
    "release_status" : "stable",
@@ -42,5 +43,5 @@
          "http://www.perlfoundation.org/artistic_license_2_0"
       ]
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }
