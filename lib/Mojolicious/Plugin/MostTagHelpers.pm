@@ -3,7 +3,7 @@ package Mojolicious::Plugin::MostTagHelpers;
 use Mojo::Base 'Mojolicious::Plugin';
 use HTML::Tagset;
 
-our $VERSION = eval 0.03;
+our $VERSION = eval 0.04;
 
 our %skip = (
   b => 1, #Mojo::Bytestream
@@ -55,6 +55,7 @@ sub _incremental {
 
   require Mojo::DOM;
   my $dom = Mojo::DOM->new($text);
+  $dom->xml(1);
   my $children = $dom->children;
   if ($children->size == 1) {
     $children = $children->[0]->children;
@@ -64,7 +65,7 @@ sub _incremental {
   });
 
   require Mojo::ByteStream;
-  return Mojo::ByteStream->new($dom->to_xml);
+  return Mojo::ByteStream->new($dom->to_string);
 }
 
 1;

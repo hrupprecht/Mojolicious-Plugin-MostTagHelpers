@@ -1,4 +1,6 @@
 Revision history for Mojolicious-Plugin-MostTagHelpers
+0.04    2014-06-12
+        Mojolicious 5.0 support (deprication of to_xml in Mojo::DOM 4.98)
 
 0.03    2014-02-05
         Removed title and param from taglist (conflicts).
